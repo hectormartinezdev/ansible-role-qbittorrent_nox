@@ -1,0 +1,38 @@
+---
+- name: "add qBittorrent ppa '{{ qbittorrent_ppa }}' version"
+  apt_repository:
+    repo: ppa:qbittorrent-team/qbittorrent-{{ qbittorrent_ppa }}
+    filename: qbittorrent-stable
+    update_cache: true
+
+- name: install qbittorrent-nox
+  apt:
+    name: qbittorrent-nox
+
+- name: "ensure user that manage qbittorent '{{ qbittorrent_user }}' exists"
+  user:
+    name: "{{ qbittorrent_user }}"
+
+- name: create service file
+  template:
+    src: qbittorrent.service
+    dest: /etc/systemd/system/
+    owner: root
+    group: root
+
+- name: create configuration file
+  template:
+    src: qBittorrent.conf
+    dest: "/home/{{ qbittorrent_user }}/.config/qBittorrent/"
+    owner: "{{ qbittorrent_user }}"
+    group: "{{ qbittorrent_user }}"
+
+- name: reload daemon
+  systemd:
+    daemon_reload: true
+
+- name: ensure that qBittorrent is {{ qbittorrent_service_state }} at boot
+  systemd:
+    name: qbittorrent
+    state: "{{ qbittorrent_service_state }}"
+    enabled: "{{ qbittorrent_service_enabled }}"

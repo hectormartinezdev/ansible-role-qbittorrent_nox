@@ -1,0 +1,16 @@
+---
+image: python
+
+services:
+  - docker:dind
+
+variables:
+  DOCKER_HOST: tcp://docker:2375
+  DOCKER_DRIVER: overlay2
+
+before_script:
+  - pip install tox
+
+test:
+  script:
+    - tox

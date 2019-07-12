@@ -1,0 +1,15 @@
+---
+- name: Converge
+  hosts: all
+
+  pre_tasks:
+    - name: install systemctl replacement
+      get_url:
+        url: https://raw.githubusercontent.com/gdraheim/docker-systemctl-replacement/master/files/docker/systemctl3.py
+        dest: /usr/bin/systemctl
+        owner: root
+        group: root
+        mode: u=rwx,g=rx,o=rx
+
+  roles:
+    - role: hectormartinezdev.qbittorrent-nox

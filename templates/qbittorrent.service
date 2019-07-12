@@ -1,0 +1,13 @@
+# {{ ansible_managed }}
+
+[Unit]
+Description=qBittorrent Daemon Service
+After=network.target
+
+[Service]
+User={{ qbittorrent_user }}
+ExecStart=/usr/bin/qbittorrent-nox
+ExecStop=/usr/bin/pkill qbittorrent-nox
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,12 @@
+---
+# PPA style, 'stable' or 'unstable'
+qbittorrent_ppa: stable
+
+# User that should be running qbittorrent
+qbittorrent_user: "{{ ansible_user_id }}"
+
+# If the service should be enabled
+qbittorrent_service_enabled: true
+
+# State of the service
+qbittorrent_service_state: started
