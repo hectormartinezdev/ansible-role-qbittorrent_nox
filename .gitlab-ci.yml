@@ -1,5 +1,5 @@
 ---
-image: python
+image: quay.io/ansible/molecule:latest
 
 services:
   - docker:dind
@@ -9,6 +9,10 @@ variables:
   DOCKER_DRIVER: overlay2
 
 before_script:
+  - docker -v
+  - python -V
+  - ansible --version
+  - molecule --version
   - pip install tox
 
 test:
