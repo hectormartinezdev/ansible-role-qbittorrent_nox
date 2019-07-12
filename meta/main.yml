@@ -1,5 +1,6 @@
 ---
 galaxy_info:
+  role_name: qbitorrent_nox
   author: Hector Martinez
   description: Install qbittorrent
   issue_tracker_url: https://gitlab.com/hectormartinez/ansible-role-qbittorrent-nox/issues
