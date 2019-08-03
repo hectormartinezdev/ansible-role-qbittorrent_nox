@@ -26,6 +26,7 @@
     dest: "/home/{{ qbittorrent_user }}/.config/qBittorrent/"
     owner: "{{ qbittorrent_user }}"
     group: "{{ qbittorrent_user }}"
+    force: false
 
 - name: reload daemon
   systemd:
